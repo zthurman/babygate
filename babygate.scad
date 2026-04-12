@@ -23,9 +23,13 @@ four_by_four_y = 3.5;
 // ===============================================
 
 bottom_stair_support_length = 8.125;
-bottom_support_length = 24;
+bottom_support_length_latch_side = 19;
+bottom_support_length_hinge_side = 16;
 vertical_gate_support_height = 35.875;
 gate_width = 32;
+//stair_to_post_offset = 7;
+stair_to_post_offset = 5.5;
+post_to_gate_bar_offset = 2;
 
 // ===============================================
 // Dimensional Lumber Definitions
@@ -71,7 +75,7 @@ module four_by_four(len_in) {
 // Model Definitions
 // ===============================================
 
-module latch_side_gate_support() {
+module hinge_side_gate_support() {
 	// Stair Support
 	two_by_four(bottom_stair_support_length);
 
@@ -82,22 +86,40 @@ module latch_side_gate_support() {
 		bottom_stair_support_length*mm_per_inch
 	])
 		rotate([0, -90, 0])
-		two_by_four(bottom_support_length);
+		two_by_four(bottom_support_length_hinge_side);
 
 	// Gate Support Post
 	translate([
-		- 7 * mm_per_inch,
+		- stair_to_post_offset * mm_per_inch,
 		0,
 		(bottom_stair_support_length + two_by_four_x) * mm_per_inch
 	])
 		rotate([0, 0, 90])
 		four_by_four(vertical_gate_support_height);
+	
+	// Banister Wrap Fall Guard
+	translate([
+		- stair_to_post_offset * mm_per_inch,
+		0,
+		(bottom_stair_support_length + two_by_four_x) * mm_per_inch
+	])
+		rotate([90, 90, 0])
+		two_by_four(4);
+	
+	// Stair Support Connector
+	translate([
+		0,
+		two_by_four_y * mm_per_inch,
+		two_by_four_y * mm_per_inch
+	])
+		rotate([-90, 0, 0])
+		two_by_four(gate_width);
 }
 
 module gate_door() {
 	// Gate Bottom
 	translate([
-		- (7 + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
 		two_by_four_y * mm_per_inch,
 		(bottom_stair_support_length + four_by_four_x + two_by_four_x) * mm_per_inch
 	])
@@ -106,7 +128,7 @@ module gate_door() {
 
 	// Gate Top
 	translate([
-		- (7 + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
 		two_by_four_y * mm_per_inch,
 		(bottom_stair_support_length + four_by_four_x + two_by_four_x + vertical_gate_support_height - two_by_four_y) * mm_per_inch
 	])
@@ -115,7 +137,7 @@ module gate_door() {
 
 	// Gate Hinge Side
 	translate([
-		- (7 + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
 		(four_by_four_y + four_by_four_x) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - four_by_four_x) * mm_per_inch
 	])
@@ -124,7 +146,7 @@ module gate_door() {
 
 	// Gate Bar 1
 	translate([
-		- (9) * mm_per_inch,
+		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + two_by_two_dim) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -133,7 +155,7 @@ module gate_door() {
 
 	// Gate Bar 2
 	translate([
-		- (9) * mm_per_inch,
+		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 2 * two_by_two_dim + 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -142,7 +164,7 @@ module gate_door() {
 
 	// Gate Bar 3
 	translate([
-		- (9) * mm_per_inch,
+		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 3 * two_by_two_dim + 2 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -151,7 +173,7 @@ module gate_door() {
 
 	// Gate Bar 4
 	translate([
-		- (9) * mm_per_inch,
+		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 4 * two_by_two_dim + 3 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -160,7 +182,7 @@ module gate_door() {
 
 	// Gate Bar 5
 	translate([
-		- (9) * mm_per_inch,
+		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 5 * two_by_two_dim + 4 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -169,7 +191,7 @@ module gate_door() {
 
 	// Gate Bar 6
 	translate([
-		- (9) * mm_per_inch,
+		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 6 * two_by_two_dim + 5 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -178,7 +200,7 @@ module gate_door() {
 	
 	// Gate Bar 7
 	translate([
-		- (9) * mm_per_inch,
+		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 7 * two_by_two_dim + 6 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -187,7 +209,7 @@ module gate_door() {
 
 	// Gate Latch Side
 	translate([
-		- (7 + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
 		(gate_width + four_by_four_y) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - four_by_four_x) * mm_per_inch
 	])
@@ -203,7 +225,7 @@ module gate_door() {
 	other_angle = 90 - angle;
 	rotate([-other_angle, 0, 0])
 		translate([
-			- (7 + four_by_four_x) * mm_per_inch,
+			- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
 			- (two_by_four_y + two_by_four_x) * mm_per_inch,
 			(bottom_stair_support_length + two_by_four_x + two_by_four_y + two_by_four_x) * mm_per_inch
 		])
@@ -211,9 +233,9 @@ module gate_door() {
 }
 
 // ===============================================
-// Hinge Side Gate Support
+// Latch Side Gate Support
 
-module hinge_side_gate_support() {
+module latch_side_gate_support() {
 	// Stair Support
 	translate([
 		0,
@@ -229,11 +251,11 @@ module hinge_side_gate_support() {
 		bottom_stair_support_length*mm_per_inch
 	])
 		rotate([0, -90, 0])
-		two_by_four(bottom_support_length);
+		two_by_four(bottom_support_length_latch_side);
 
 	// Gate Support Post
 	translate([
-		- 7 * mm_per_inch,
+		- stair_to_post_offset * mm_per_inch,
 		two_by_four_x + (gate_width + two_by_four_y) *mm_per_inch, 
 		(bottom_stair_support_length + two_by_four_x) * mm_per_inch
 	])
