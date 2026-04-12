@@ -26,6 +26,8 @@ bottom_stair_support_length = 8.125;
 bottom_support_length_latch_side = 20;
 bottom_support_length_hinge_side = 18;
 vertical_gate_support_height = 35.875;
+// TODO: 33 or 32?
+//gate_width = 33;
 gate_width = 32;
 //stair_to_post_offset = 7;
 stair_to_post_offset = 5.5;
@@ -253,6 +255,15 @@ module latch_side_gate_support() {
 	])
 		rotate([0, -90, 0])
 		two_by_four(bottom_support_length_latch_side);
+	
+	// Railing Wrap Fall Guard
+	translate([
+		- (stair_to_post_offset + stair_overhang) * mm_per_inch,
+		two_by_four_x + (gate_width + 2 * two_by_four_y + 4) * mm_per_inch, 
+		(bottom_stair_support_length + two_by_four_x) * mm_per_inch
+	])
+		rotate([90, 90, 0])
+		two_by_four(4);
 
 	// Gate Support Post
 	translate([
