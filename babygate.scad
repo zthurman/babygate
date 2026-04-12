@@ -23,12 +23,13 @@ four_by_four_y = 3.5;
 // ===============================================
 
 bottom_stair_support_length = 8.125;
-bottom_support_length_latch_side = 19;
-bottom_support_length_hinge_side = 16;
+bottom_support_length_latch_side = 20;
+bottom_support_length_hinge_side = 18;
 vertical_gate_support_height = 35.875;
 gate_width = 32;
 //stair_to_post_offset = 7;
 stair_to_post_offset = 5.5;
+stair_overhang = 0.75;
 post_to_gate_bar_offset = 2;
 
 // ===============================================
@@ -90,7 +91,7 @@ module hinge_side_gate_support() {
 
 	// Gate Support Post
 	translate([
-		- stair_to_post_offset * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang) * mm_per_inch,
 		0,
 		(bottom_stair_support_length + two_by_four_x) * mm_per_inch
 	])
@@ -99,7 +100,7 @@ module hinge_side_gate_support() {
 	
 	// Banister Wrap Fall Guard
 	translate([
-		- stair_to_post_offset * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang) * mm_per_inch,
 		0,
 		(bottom_stair_support_length + two_by_four_x) * mm_per_inch
 	])
@@ -119,7 +120,7 @@ module hinge_side_gate_support() {
 module gate_door() {
 	// Gate Bottom
 	translate([
-		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + four_by_four_x) * mm_per_inch,
 		two_by_four_y * mm_per_inch,
 		(bottom_stair_support_length + four_by_four_x + two_by_four_x) * mm_per_inch
 	])
@@ -128,7 +129,7 @@ module gate_door() {
 
 	// Gate Top
 	translate([
-		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + four_by_four_x) * mm_per_inch,
 		two_by_four_y * mm_per_inch,
 		(bottom_stair_support_length + four_by_four_x + two_by_four_x + vertical_gate_support_height - two_by_four_y) * mm_per_inch
 	])
@@ -137,7 +138,7 @@ module gate_door() {
 
 	// Gate Hinge Side
 	translate([
-		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + four_by_four_x) * mm_per_inch,
 		(four_by_four_y + four_by_four_x) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - four_by_four_x) * mm_per_inch
 	])
@@ -146,7 +147,7 @@ module gate_door() {
 
 	// Gate Bar 1
 	translate([
-		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + two_by_two_dim) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -155,7 +156,7 @@ module gate_door() {
 
 	// Gate Bar 2
 	translate([
-		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 2 * two_by_two_dim + 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -164,7 +165,7 @@ module gate_door() {
 
 	// Gate Bar 3
 	translate([
-		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 3 * two_by_two_dim + 2 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -173,7 +174,7 @@ module gate_door() {
 
 	// Gate Bar 4
 	translate([
-		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 4 * two_by_two_dim + 3 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -182,7 +183,7 @@ module gate_door() {
 
 	// Gate Bar 5
 	translate([
-		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 5 * two_by_two_dim + 4 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -191,7 +192,7 @@ module gate_door() {
 
 	// Gate Bar 6
 	translate([
-		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 6 * two_by_two_dim + 5 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -200,7 +201,7 @@ module gate_door() {
 	
 	// Gate Bar 7
 	translate([
-		- (stair_to_post_offset + post_to_gate_bar_offset) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + post_to_gate_bar_offset) * mm_per_inch,
 		(four_by_four_y + two_by_four_y + 7 * two_by_two_dim + 6 * 2.42) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - 1.75) * mm_per_inch
 	])
@@ -209,7 +210,7 @@ module gate_door() {
 
 	// Gate Latch Side
 	translate([
-		- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang + four_by_four_x) * mm_per_inch,
 		(gate_width + four_by_four_y) * mm_per_inch,
 		(bottom_stair_support_length + two_by_four_x + vertical_gate_support_height - four_by_four_x) * mm_per_inch
 	])
@@ -225,7 +226,7 @@ module gate_door() {
 	other_angle = 90 - angle;
 	rotate([-other_angle, 0, 0])
 		translate([
-			- (stair_to_post_offset + four_by_four_x) * mm_per_inch,
+			- (stair_to_post_offset + stair_overhang + four_by_four_x) * mm_per_inch,
 			- (two_by_four_y + two_by_four_x) * mm_per_inch,
 			(bottom_stair_support_length + two_by_four_x + two_by_four_y + two_by_four_x) * mm_per_inch
 		])
@@ -255,7 +256,7 @@ module latch_side_gate_support() {
 
 	// Gate Support Post
 	translate([
-		- stair_to_post_offset * mm_per_inch,
+		- (stair_to_post_offset + stair_overhang) * mm_per_inch,
 		two_by_four_x + (gate_width + two_by_four_y) *mm_per_inch, 
 		(bottom_stair_support_length + two_by_four_x) * mm_per_inch
 	])
